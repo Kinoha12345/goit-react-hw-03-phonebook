@@ -16,13 +16,13 @@ class App extends Component {
     number: '',
     filter: ''
   }
-  filter = (query)=>{
-    return this.state.contacts.filter(item => item.name.toLowerCase().includes(query.toLowerCase()) && item )
-   }
+  
 
   componentDidMount(){
     const contactsData = JSON.parse(localStorage.getItem('contacts'))
+    if(localStorage) {
     this.setState({contacts: contactsData})
+  }
   }
 componentDidUpdate(prevProps, prevState, snapshot){
   if(prevState.contacts !== this.state.contacts){
@@ -40,10 +40,9 @@ componentDidUpdate(prevProps, prevState, snapshot){
   }));
 
   
-
-  // filter = (query)=>{
-  //   return this.state.contacts.filter(item => item.name.toLowerCase().includes(query.toLowerCase()) && item )
-  //  }
+  filter = (query)=>{
+    return this.state.contacts.filter(item => item.name.toLowerCase().includes(query.toLowerCase()) && item )
+   }
   onTelValue = (e)=>{
     const {name,value} = e.target;
     console.log(e.target.value);
